@@ -1,0 +1,13 @@
+.banner {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-overlay);
+  width: 100%;
+  padding: var(--space-2) var(--space-4);
+  text-align: center;
+  color: #fff;
+  background: rgba(231, 76, 60, 0.95);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+}

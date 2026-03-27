@@ -1,0 +1,128 @@
+.shell {
+  min-height: 100vh;
+}
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-raised);
+  border-bottom: 1px solid var(--habesha-black-border);
+  background: rgba(20, 20, 20, 0.92);
+  backdrop-filter: blur(10px);
+}
+
+.headerInner {
+  width: min(1320px, 100%);
+  margin: 0 auto;
+  padding: var(--space-3) var(--space-4);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.brandWrap {
+  display: grid;
+  gap: 2px;
+}
+
+.brandTop {
+  color: var(--habesha-gold-light);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+}
+
+.brandBottom {
+  color: var(--habesha-cream-muted);
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.actionsWrap {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.userEmail {
+  color: var(--habesha-cream-muted);
+  font-size: var(--text-xs);
+  max-width: 220px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.languageLabel {
+  color: var(--habesha-cream-muted);
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.langButton {
+  border: 1px solid var(--habesha-black-border);
+  border-radius: var(--radius-md);
+  color: var(--habesha-cream);
+  background: var(--habesha-black-soft);
+  padding: var(--space-1) var(--space-3);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  cursor: pointer;
+}
+
+.langButtonActive {
+  border-color: var(--habesha-gold);
+  color: var(--habesha-black);
+  background: linear-gradient(135deg, var(--habesha-gold-dark), var(--habesha-gold-light));
+}
+
+.logoutButton {
+  border: 1px solid var(--habesha-black-border);
+  border-radius: var(--radius-md);
+  color: var(--habesha-cream);
+  background: transparent;
+  padding: var(--space-1) var(--space-3);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  cursor: pointer;
+}
+
+.logoutButton:hover,
+.logoutButton:focus-visible {
+  border-color: var(--status-critical);
+  color: #fff;
+  background: rgba(231, 76, 60, 0.16);
+}
+
+.nav {
+  width: min(1320px, 100%);
+  margin: 0 auto;
+  padding: 0 var(--space-4) var(--space-3);
+  display: flex;
+  gap: var(--space-2);
+  overflow-x: auto;
+}
+
+.navLink {
+  border: 1px solid var(--habesha-black-border);
+  border-radius: var(--radius-full);
+  color: var(--habesha-cream-muted);
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: var(--space-1) var(--space-3);
+  white-space: nowrap;
+}
+
+.navLinkActive {
+  border-color: var(--habesha-gold);
+  color: var(--habesha-gold-light);
+  background: rgba(212, 175, 55, 0.1);
+}
+
+.pageBody {
+  width: 100%;
+}

@@ -1,0 +1,20 @@
+.tibeb-border {
+  position: relative;
+}
+
+.tibeb-border::before {
+  content: '';
+  display: block;
+  height: 12px;
+  width: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='12'%3E%3Cpolygon points='0,6 10,0 20,6 10,12' fill='%23D4AF37' opacity='0.9'/%3E%3Cpolygon points='20,6 30,0 40,6 30,12' fill='%23D4AF37' opacity='0.9'/%3E%3Cpolygon points='10,6 20,0 30,6 20,12' fill='%231A1A1A'/%3E%3C/svg%3E");
+  background-repeat: repeat-x;
+  background-size: 40px 12px;
+}
+
+.tibeb-divider {
+  height: 8px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='8'%3E%3Crect x='0' y='2' width='8' height='4' rx='1' fill='%23D4AF37' opacity='0.6'/%3E%3Crect x='10' y='0' width='4' height='8' rx='1' fill='%23D4AF37'/%3E%3Crect x='16' y='2' width='8' height='4' rx='1' fill='%23D4AF37' opacity='0.6'/%3E%3C/svg%3E");
+  background-repeat: repeat-x;
+  background-size: 24px 8px;
+}

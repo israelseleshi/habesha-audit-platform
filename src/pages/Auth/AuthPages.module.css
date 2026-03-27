@@ -1,0 +1,97 @@
+.page {
+  min-height: 100vh;
+  padding: var(--space-6);
+  display: grid;
+  place-items: center;
+}
+
+.card {
+  width: min(560px, 100%);
+  padding: var(--space-6);
+  background: linear-gradient(160deg, rgba(36, 36, 36, 0.96), rgba(20, 20, 20, 0.96));
+  border: 1px solid var(--habesha-black-border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-elevated);
+  animation: fade-in-up var(--duration-slow) var(--ease-standard);
+}
+
+.header {
+  display: grid;
+  gap: var(--space-2);
+  margin-top: var(--space-4);
+  margin-bottom: var(--space-5);
+}
+
+.kicker {
+  color: var(--habesha-gold);
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: var(--text-xs);
+}
+
+.subcopy {
+  color: var(--habesha-cream-muted);
+}
+
+.form {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.field {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.field span {
+  font-size: var(--text-sm);
+  color: var(--habesha-cream-muted);
+}
+
+.field input,
+.field select {
+  border: 1px solid var(--habesha-black-border);
+  border-radius: var(--radius-md);
+  background: var(--habesha-black-soft);
+  color: var(--habesha-cream);
+  padding: var(--space-3) var(--space-4);
+  transition: border-color var(--duration-fast) var(--ease-standard);
+}
+
+.field input:focus-visible,
+.field select:focus-visible {
+  outline: none;
+  border-color: var(--habesha-gold);
+}
+
+.error {
+  color: var(--status-critical);
+  font-size: var(--text-sm);
+}
+
+.info {
+  color: var(--habesha-cream-muted);
+  font-size: var(--text-sm);
+}
+
+.linkRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.linkButton {
+  border: 0;
+  background: transparent;
+  color: var(--habesha-gold-light);
+  cursor: pointer;
+  font-size: var(--text-sm);
+  padding: 0;
+}
+
+.linkButton:hover,
+.linkButton:focus-visible {
+  text-decoration: underline;
+}

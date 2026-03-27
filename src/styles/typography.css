@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=DM+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap');
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  color: var(--habesha-cream);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  color: var(--habesha-gold-light);
+  line-height: 1.1;
+}
+
+h1 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: var(--weight-bold);
+}
+
+h2 {
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  font-weight: var(--weight-semibold);
+}
+
+h3 {
+  font-size: clamp(1.2rem, 2.4vw, 1.65rem);
+  font-weight: var(--weight-semibold);
+}
+
+p {
+  color: var(--habesha-cream);
+}

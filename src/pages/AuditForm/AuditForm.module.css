@@ -1,0 +1,212 @@
+.page {
+  padding: var(--space-4);
+  padding-bottom: var(--space-12);
+}
+
+.form {
+  width: min(920px, 100%);
+  margin: 0 auto;
+  display: grid;
+  gap: var(--space-4);
+}
+
+.hero {
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--habesha-black-border);
+  background: linear-gradient(140deg, rgba(27, 27, 27, 0.95), rgba(21, 21, 21, 0.98));
+  padding: var(--space-5);
+  box-shadow: var(--shadow-card);
+  animation: fade-in-up var(--duration-slow) var(--ease-standard);
+}
+
+.heroHeading {
+  display: grid;
+  gap: var(--space-2);
+  margin-top: var(--space-4);
+}
+
+.heroHeading p {
+  color: var(--habesha-cream-muted);
+}
+
+.kicker {
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--habesha-gold);
+}
+
+.statusRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-5);
+}
+
+.panel {
+  border: 1px solid var(--habesha-black-border);
+  border-radius: var(--radius-lg);
+  background: rgba(36, 36, 36, 0.94);
+  padding: var(--space-4);
+  display: grid;
+  gap: var(--space-4);
+}
+
+.panel h2 {
+  color: var(--habesha-gold-light);
+}
+
+.field {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.field span {
+  font-size: var(--text-sm);
+  color: var(--habesha-cream-muted);
+}
+
+.field input,
+.field select,
+.field textarea,
+.photoField input {
+  border: 1px solid var(--habesha-black-border);
+  border-radius: var(--radius-md);
+  background: var(--habesha-black-soft);
+  color: var(--habesha-cream);
+  padding: var(--space-3) var(--space-4);
+}
+
+.field input:focus-visible,
+.field select:focus-visible,
+.field textarea:focus-visible,
+.photoField input:focus-visible {
+  outline: none;
+  border-color: var(--habesha-gold);
+}
+
+.metaGrid {
+  display: grid;
+  gap: var(--space-3);
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}
+
+.metaGrid article {
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(212, 175, 55, 0.22);
+  background: rgba(212, 175, 55, 0.07);
+  padding: var(--space-3);
+}
+
+.metaGrid h3 {
+  font-size: var(--text-sm);
+  color: var(--habesha-gold);
+  margin-bottom: var(--space-1);
+}
+
+.photoGrid {
+  display: grid;
+  gap: var(--space-3);
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.photoField {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.photoField span {
+  font-size: var(--text-sm);
+  color: var(--habesha-cream-muted);
+}
+
+.photoField small {
+  color: var(--habesha-cream-muted);
+  font-size: var(--text-xs);
+}
+
+.photoField .warningText {
+  color: #ffd295;
+}
+
+.photoField .errorText {
+  color: #ffb5ac;
+}
+
+.twoCol {
+  display: grid;
+  gap: var(--space-3);
+  grid-template-columns: 1fr;
+}
+
+.toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+  color: var(--habesha-cream);
+}
+
+.toggle input {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--status-critical);
+}
+
+.errorPanel {
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--status-critical);
+  background: var(--status-critical-bg);
+  padding: var(--space-4);
+  display: grid;
+  gap: var(--space-2);
+}
+
+.warningPanel {
+  border-radius: var(--radius-md);
+  border: 1px solid var(--status-warning);
+  background: var(--status-warning-bg);
+  color: #ffd295;
+  padding: var(--space-3);
+  font-size: var(--text-sm);
+}
+
+.errorPanel h3 {
+  color: #ffb5ac;
+}
+
+.errorPanel li {
+  color: #ffcbc5;
+  font-size: var(--text-sm);
+}
+
+.resultPanel {
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--status-compliant);
+  background: var(--status-compliant-bg);
+  padding: var(--space-4);
+  display: grid;
+  gap: var(--space-2);
+  animation: fade-in-up var(--duration-base) var(--ease-standard);
+}
+
+.resultPanel h3 {
+  color: #9ef3c1;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: var(--space-2);
+}
+
+@media (min-width: 768px) {
+  .page {
+    padding: var(--space-6);
+    padding-bottom: var(--space-16);
+  }
+
+  .twoCol {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

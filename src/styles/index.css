@@ -1,0 +1,33 @@
+@import './variables.css';
+@import './reset.css';
+@import './typography.css';
+@import './animations.css';
+@import './tibeb.css';
+@import './utilities.css';
+
+:root {
+  font-synthesis: none;
+}
+
+body {
+  background:
+    radial-gradient(circle at 20% 0%, #3b3112, #1a1a1a 45%),
+    linear-gradient(135deg, #1d1d1d 0%, #101010 100%);
+  min-height: 100vh;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 30px 30px;
+  pointer-events: none;
+  z-index: -1;
+}
+
+#root {
+  min-height: 100vh;
+}
