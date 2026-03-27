@@ -3,6 +3,29 @@ const SESSION_KEY = 'habesha-demo-session-v2';
 const OTP_KEY = 'habesha-demo-otp-v2';
 const RESET_KEY = 'habesha-demo-reset-v2';
 
+const DEFAULT_DEMO_USERS = Object.freeze([
+  {
+    email: 'enumerator@demo.habesha',
+    password: 'Demo@12345',
+    role: 'enumerator',
+  },
+  {
+    email: 'supervisor@demo.habesha',
+    password: 'Demo@12345',
+    role: 'supervisor',
+  },
+  {
+    email: 'pm@demo.habesha',
+    password: 'Demo@12345',
+    role: 'project_manager',
+  },
+  {
+    email: 'executive@demo.habesha',
+    password: 'Demo@12345',
+    role: 'client_executive',
+  },
+]);
+
 function readJson(key, fallback) {
   try {
     const raw = window.localStorage.getItem(key);
@@ -24,8 +47,19 @@ function normalizeEmail(value) {
   return String(value || '').trim().toLowerCase();
 }
 
+function normalizeSeedUsers(users) {
+  return users
+    .filter((item) => item?.email && item?.password && item?.role)
+    .map((item) => ({
+      email: normalizeEmail(item.email),
+      password: String(item.password),
+      role: String(item.role),
+      verified: true,
+    }));
+}
+
 function getSeedUsersFromEnv() {
-  const envMapped = [
+  const envMapped = normalizeSeedUsers([
     {
       email: import.meta.env.VITE_DEMO_ENUMERATOR_EMAIL,
       password: import.meta.env.VITE_DEMO_ENUMERATOR_PASSWORD,
@@ -46,14 +80,7 @@ function getSeedUsersFromEnv() {
       password: import.meta.env.VITE_DEMO_EXECUTIVE_PASSWORD,
       role: 'client_executive',
     },
-  ]
-    .filter((item) => item.email && item.password)
-    .map((item) => ({
-      email: normalizeEmail(item.email),
-      password: String(item.password),
-      role: item.role,
-      verified: true,
-    }));
+  ]);
 
   const fromJson = (() => {
     const raw = import.meta.env.VITE_DEMO_USERS_JSON;
@@ -67,14 +94,7 @@ function getSeedUsersFromEnv() {
         return [];
       }
 
-      return parsed
-        .filter((item) => item?.email && item?.password && item?.role)
-        .map((item) => ({
-          email: normalizeEmail(item.email),
-          password: String(item.password),
-          role: String(item.role),
-          verified: true,
-        }));
+      return normalizeSeedUsers(parsed);
     } catch {
       return [];
     }
@@ -82,7 +102,7 @@ function getSeedUsersFromEnv() {
 
   const uniqueByEmail = new Map();
 
-  for (const item of [...envMapped, ...fromJson]) {
+  for (const item of [...normalizeSeedUsers(DEFAULT_DEMO_USERS), ...envMapped, ...fromJson]) {
     uniqueByEmail.set(item.email, item);
   }
 
