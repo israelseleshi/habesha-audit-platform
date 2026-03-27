@@ -10,6 +10,29 @@ const LOCKOUT_KEY = 'habesha-login-lockout-v1';
 const MAX_ATTEMPTS = 5;
 const LOCKOUT_MS = 15 * 60 * 1000;
 
+const DEMO_QUICK_ACCOUNTS = [
+  {
+    label: 'Enumerator',
+    email: 'enumerator@demo.habesha',
+    password: 'Demo@12345',
+  },
+  {
+    label: 'Supervisor',
+    email: 'supervisor@demo.habesha',
+    password: 'Demo@12345',
+  },
+  {
+    label: 'Project Manager',
+    email: 'pm@demo.habesha',
+    password: 'Demo@12345',
+  },
+  {
+    label: 'Executive',
+    email: 'executive@demo.habesha',
+    password: 'Demo@12345',
+  },
+];
+
 function readLockoutMap() {
   try {
     const raw = window.localStorage.getItem(LOCKOUT_KEY);
@@ -34,6 +57,7 @@ function Login() {
   const location = useLocation();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
@@ -135,6 +159,13 @@ function Login() {
     }
   };
 
+  const handleDemoPrefill = (account) => {
+    setEmail(account.email);
+    setPassword(account.password);
+    setShowPassword(false);
+    setError('');
+  };
+
   return (
     <main className={styles.page}>
       <section className={`tibeb-border ${styles.card}`}>
@@ -158,6 +189,25 @@ function Login() {
         </div>
 
         <form className={styles.form} onSubmit={handleSubmit}>
+          {authMode === 'demo' && (
+            <div className={styles.demoAccounts}>
+              <p>{tx('Quick Demo Accounts', 'ፈጣን የሙከራ መለያዎች')}</p>
+              <div className={styles.demoAccountGrid}>
+                {DEMO_QUICK_ACCOUNTS.map((account) => (
+                  <button
+                    key={account.email}
+                    type="button"
+                    className={styles.demoAccountButton}
+                    onClick={() => handleDemoPrefill(account)}
+                  >
+                    <span>{account.label}</span>
+                    <small>{account.email}</small>
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+
           <label className={styles.field}>
             <span>{tx('Email', 'ኢሜይል')}</span>
             <input
@@ -175,17 +225,40 @@ function Login() {
 
           <label className={styles.field}>
             <span>{tx('Password', 'የይለፍ ቃል')}</span>
-            <input
-              type="password"
-              autoComplete="current-password"
-              placeholder={tx('Enter your password', 'የይለፍ ቃልዎን ያስገቡ')}
-              value={password}
-              onChange={(event) => {
-                setPassword(event.target.value);
-                setError('');
-              }}
-              required
-            />
+            <div className={styles.passwordField}>
+              <input
+                type={showPassword ? 'text' : 'password'}
+                autoComplete="current-password"
+                placeholder={tx('Enter your password', 'የይለፍ ቃልዎን ያስገቡ')}
+                value={password}
+                onChange={(event) => {
+                  setPassword(event.target.value);
+                  setError('');
+                }}
+                required
+              />
+              <button
+                type="button"
+                className={styles.passwordToggle}
+                onClick={() => setShowPassword((current) => !current)}
+                aria-label={
+                  showPassword
+                    ? tx('Hide password', 'የይለፍ ቃል ደብቅ')
+                    : tx('Show password', 'የይለፍ ቃል አሳይ')
+                }
+                aria-pressed={showPassword}
+              >
+                {showPassword ? (
+                  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path d="M3 4.3 4.3 3 21 19.7 19.7 21l-3.1-3.1A11.2 11.2 0 0 1 12 19c-5.2 0-9.4-3.5-11-7 1-2.1 2.8-4.2 5.1-5.6L3 4.3Zm5.9 5.9A3.5 3.5 0 0 0 12 15.5c.8 0 1.5-.2 2.1-.6l-1.2-1.2a1.8 1.8 0 0 1-2.6-2.6l-1.4-1.4Zm3.1-5.2c5.2 0 9.4 3.5 11 7-.6 1.2-1.5 2.5-2.6 3.6l-1.2-1.2a9.1 9.1 0 0 0 1.8-2.4c-1.4-2.8-4.8-5-9-5-.6 0-1.2 0-1.8.2L8.5 5.5c1.1-.3 2.3-.5 3.5-.5Zm0 3A4 4 0 0 1 16 12c0 .6-.1 1.1-.3 1.6l-3.3-3.3c-.1 0-.2 0-.4 0a1.7 1.7 0 0 0-1.7 1.7c0 .1 0 .2 0 .4L8.4 10.5A4 4 0 0 1 12 8Z" />
+                  </svg>
+                ) : (
+                  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path d="M12 5c5.2 0 9.4 3.5 11 7-1.6 3.5-5.8 7-11 7S2.6 15.5 1 12c1.6-3.5 5.8-7 11-7Zm0 2C7.8 7 4.4 9.2 3 12c1.4 2.8 4.8 5 9 5s7.6-2.2 9-5c-1.4-2.8-4.8-5-9-5Zm0 2.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5Z" />
+                  </svg>
+                )}
+              </button>
+            </div>
           </label>
 
           {error && <p className={styles.error}>{error}</p>}
@@ -197,12 +270,6 @@ function Login() {
           <div className={styles.links}>
             <Link to="/auth/signup" className={styles.linkButton}>
               {tx('Sign Up', 'ይመዝገቡ')}
-            </Link>
-            <Link to="/auth/verify-otp" className={styles.linkButton}>
-              {tx('Verify OTP', 'OTP ያረጋግጡ')}
-            </Link>
-            <Link to="/auth/forgot-password" className={styles.linkButton}>
-              {tx('Forgot Password', 'የይለፍ ቃል ረስቻለሁ')}
             </Link>
           </div>
         </form>

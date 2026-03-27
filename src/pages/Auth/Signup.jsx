@@ -15,6 +15,8 @@ function Signup() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [role, setRole] = useState('enumerator');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
@@ -118,30 +120,76 @@ function Signup() {
 
           <label className={styles.field}>
             <span>{tx('Password', 'የይለፍ ቃል')}</span>
-            <input
-              type="password"
-              value={password}
-              onChange={(event) => {
-                setPassword(event.target.value);
-                setError('');
-              }}
-              placeholder={tx('At least 8 characters', 'ቢያንስ 8 ቁምፊ')}
-              required
-            />
+            <div className={styles.passwordField}>
+              <input
+                type={showPassword ? 'text' : 'password'}
+                value={password}
+                onChange={(event) => {
+                  setPassword(event.target.value);
+                  setError('');
+                }}
+                placeholder={tx('At least 8 characters', 'ቢያንስ 8 ቁምፊ')}
+                required
+              />
+              <button
+                type="button"
+                className={styles.passwordToggle}
+                onClick={() => setShowPassword((current) => !current)}
+                aria-label={
+                  showPassword
+                    ? tx('Hide password', 'የይለፍ ቃል ደብቅ')
+                    : tx('Show password', 'የይለፍ ቃል አሳይ')
+                }
+                aria-pressed={showPassword}
+              >
+                {showPassword ? (
+                  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path d="M3 4.3 4.3 3 21 19.7 19.7 21l-3.1-3.1A11.2 11.2 0 0 1 12 19c-5.2 0-9.4-3.5-11-7 1-2.1 2.8-4.2 5.1-5.6L3 4.3Zm5.9 5.9A3.5 3.5 0 0 0 12 15.5c.8 0 1.5-.2 2.1-.6l-1.2-1.2a1.8 1.8 0 0 1-2.6-2.6l-1.4-1.4Zm3.1-5.2c5.2 0 9.4 3.5 11 7-.6 1.2-1.5 2.5-2.6 3.6l-1.2-1.2a9.1 9.1 0 0 0 1.8-2.4c-1.4-2.8-4.8-5-9-5-.6 0-1.2 0-1.8.2L8.5 5.5c1.1-.3 2.3-.5 3.5-.5Zm0 3A4 4 0 0 1 16 12c0 .6-.1 1.1-.3 1.6l-3.3-3.3c-.1 0-.2 0-.4 0a1.7 1.7 0 0 0-1.7 1.7c0 .1 0 .2 0 .4L8.4 10.5A4 4 0 0 1 12 8Z" />
+                  </svg>
+                ) : (
+                  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path d="M12 5c5.2 0 9.4 3.5 11 7-1.6 3.5-5.8 7-11 7S2.6 15.5 1 12c1.6-3.5 5.8-7 11-7Zm0 2C7.8 7 4.4 9.2 3 12c1.4 2.8 4.8 5 9 5s7.6-2.2 9-5c-1.4-2.8-4.8-5-9-5Zm0 2.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5Z" />
+                  </svg>
+                )}
+              </button>
+            </div>
           </label>
 
           <label className={styles.field}>
             <span>{tx('Confirm Password', 'የይለፍ ቃል ያረጋግጡ')}</span>
-            <input
-              type="password"
-              value={confirmPassword}
-              onChange={(event) => {
-                setConfirmPassword(event.target.value);
-                setError('');
-              }}
-              placeholder={tx('Re-enter your password', 'የይለፍ ቃልዎን እንደገና ያስገቡ')}
-              required
-            />
+            <div className={styles.passwordField}>
+              <input
+                type={showConfirmPassword ? 'text' : 'password'}
+                value={confirmPassword}
+                onChange={(event) => {
+                  setConfirmPassword(event.target.value);
+                  setError('');
+                }}
+                placeholder={tx('Re-enter your password', 'የይለፍ ቃልዎን እንደገና ያስገቡ')}
+                required
+              />
+              <button
+                type="button"
+                className={styles.passwordToggle}
+                onClick={() => setShowConfirmPassword((current) => !current)}
+                aria-label={
+                  showConfirmPassword
+                    ? tx('Hide password', 'የይለፍ ቃል ደብቅ')
+                    : tx('Show password', 'የይለፍ ቃል አሳይ')
+                }
+                aria-pressed={showConfirmPassword}
+              >
+                {showConfirmPassword ? (
+                  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path d="M3 4.3 4.3 3 21 19.7 19.7 21l-3.1-3.1A11.2 11.2 0 0 1 12 19c-5.2 0-9.4-3.5-11-7 1-2.1 2.8-4.2 5.1-5.6L3 4.3Zm5.9 5.9A3.5 3.5 0 0 0 12 15.5c.8 0 1.5-.2 2.1-.6l-1.2-1.2a1.8 1.8 0 0 1-2.6-2.6l-1.4-1.4Zm3.1-5.2c5.2 0 9.4 3.5 11 7-.6 1.2-1.5 2.5-2.6 3.6l-1.2-1.2a9.1 9.1 0 0 0 1.8-2.4c-1.4-2.8-4.8-5-9-5-.6 0-1.2 0-1.8.2L8.5 5.5c1.1-.3 2.3-.5 3.5-.5Zm0 3A4 4 0 0 1 16 12c0 .6-.1 1.1-.3 1.6l-3.3-3.3c-.1 0-.2 0-.4 0a1.7 1.7 0 0 0-1.7 1.7c0 .1 0 .2 0 .4L8.4 10.5A4 4 0 0 1 12 8Z" />
+                  </svg>
+                ) : (
+                  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path d="M12 5c5.2 0 9.4 3.5 11 7-1.6 3.5-5.8 7-11 7S2.6 15.5 1 12c1.6-3.5 5.8-7 11-7Zm0 2C7.8 7 4.4 9.2 3 12c1.4 2.8 4.8 5 9 5s7.6-2.2 9-5c-1.4-2.8-4.8-5-9-5Zm0 2.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5Z" />
+                  </svg>
+                )}
+              </button>
+            </div>
           </label>
 
           {error && <p className={styles.error}>{error}</p>}
@@ -153,9 +201,6 @@ function Signup() {
           <div className={styles.linkRow}>
             <Link className={styles.linkButton} to="/login">
               {tx('Back to Login', 'ወደ መግቢያ ተመለስ')}
-            </Link>
-            <Link className={styles.linkButton} to="/auth/verify-otp">
-              {tx('Verify OTP', 'OTP ያረጋግጡ')}
             </Link>
           </div>
         </form>

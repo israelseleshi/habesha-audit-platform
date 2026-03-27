@@ -64,6 +64,40 @@
   border-color: var(--habesha-gold);
 }
 
+.passwordField {
+  position: relative;
+}
+
+.passwordField input {
+  width: 100%;
+  padding-right: 44px;
+}
+
+.passwordToggle {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 0;
+  background: transparent;
+  color: var(--habesha-cream-muted);
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  padding: 0;
+}
+
+.passwordToggle svg {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+}
+
+.passwordToggle:hover,
+.passwordToggle:focus-visible {
+  color: var(--habesha-gold-light);
+}
+
 .error {
   color: var(--status-critical);
   font-size: var(--text-sm);

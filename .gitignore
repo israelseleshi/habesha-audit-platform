@@ -23,3 +23,7 @@ dist-ssr
 *.sln
 *.sw?
 
+# Local planning and working documentation
+docs/
+prd_technical_guide.md
+
